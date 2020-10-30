@@ -10,7 +10,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class AutoRename extends JFrame {
-    private static JTextArea log = new JTextArea(5,20);
+    private static JTextArea log = new JTextArea(8,20);
     private static JFileChooser chooseDirectory = new JFileChooser();
 
     public AutoRename() {
@@ -29,6 +29,7 @@ public class AutoRename extends JFrame {
         setupFileChooser();
 
         log.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(log);
 
         JButton renomear = new JButton("Renomear");
 
@@ -45,7 +46,7 @@ public class AutoRename extends JFrame {
 
         p1.add(new JLabel("Insira diretótio (double backslash)"), BorderLayout.NORTH);
         p1.add(chooseDirectory, BorderLayout.CENTER);
-        p2.add(log, BorderLayout.NORTH);
+        p2.add(scrollPane, BorderLayout.NORTH);
         p2.add(renomear, BorderLayout.SOUTH);
 
         getContentPane().add(p1);
@@ -68,16 +69,13 @@ public class AutoRename extends JFrame {
 
     public void filaDeAlteracao(String path) {
         File folder = new File(path);
-        File[] listOfFiles  = new File(folder.listFiles());
+        File[] listOfFiles  = folder.listFiles();
 
-        if(!(listOfFiles.length == 0)){
-            for (File file : listOfFiles) {
-                if ((file.isFile() && file.getName().contains("mp3")) && (file.getName().contains("-") || file.getName().contains("."))) {
-                    renomeador(file);
-                }
+        
+        for (File file : listOfFiles) {
+            if ((file.isFile() && file.getName().contains("mp3")) && (file.getName().contains("-") || file.getName().contains("."))) {
+                renomeador(file);
             }
-        }else{
-            logUpdate("Não há arquivos.");
         }
     }
 
@@ -87,7 +85,7 @@ public class AutoRename extends JFrame {
 
     public void renomeador(File file) {
         logUpdate(file.getName());
-        String nome = "" + file.getName().substring(3);
+        String nome = "" + file.getName().substring(4);
         File file2 = new File(getPath() + "\\" + nome);
         file.renameTo(file2);
     }
