@@ -1,5 +1,5 @@
 # Renomeador de músicas
-Ideia simples para remover a enumeração de múltiplos arquivos de musica de uma vez.
+Ideia simples para remover a enumeração de múltiplas faixas de musica de uma vez.
 <hr>
 <h3> Programa renomeia arquivos como por exemplo "001 - space odditie", removendo o número do início do nome.</h3>
 
