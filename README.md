@@ -1,7 +1,8 @@
 # Renomeador de músicas
-Ideia simples para remover a enumeração de múltiplas faixas de musica de uma vez.
+Ideia simples para remover ou adicionar enumeração de múltiplas faixas de musica de uma vez.
 <hr>
-<h3> Programa renomeia arquivos como por exemplo "001 - space odditie", removendo o número do início do nome.</h3>
+<h3> Programa renomeia arquivos como por exemplo "001 - space oddity", removendo o número do início do nome.</h3>
+<h3> Também é possivel adicionar números aos nomes dos arquivos, como por exemplo a música "Fortunate Son" retorna "1 - Fortunate Son", </h3>
 
 <p> Tela do programa: </p>
 <img src="https://github.com/LucasMonir/Renomeador-de-musicas/blob/main/AutoRename.png">
@@ -11,3 +12,5 @@ Ideia simples para remover a enumeração de múltiplas faixas de musica de uma 
 <img src="https://github.com/LucasMonir/Renomeador-de-musicas/blob/main/Execu%C3%A7%C3%A3o.PNG?raw=true">
 
 <h3> Em desenvolvimento... </h3>
+<h3> Próximo passo: renomear qualquer tipo de arquivo, com nome de acordo com quantidade </h3>
+
