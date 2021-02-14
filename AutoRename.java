@@ -1,20 +1,18 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileFilter;
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.*;
 
 public class AutoRename extends JFrame {
-    private static JTextArea log = new JTextArea(8,20);
+
+    private static final long serialVersionUID = 1L;
+    private static JTextArea log = new JTextArea(8, 20);
     private static JFileChooser chooseDirectory = new JFileChooser();
 
-    public AutoRename() {
-        super("Renomeador de preguiçoso");
+    private AutoRename() {
+        super("Renomeador de músicas");
 
         setPreferredSize(new Dimension(500, 600));
         setResizable(false);
@@ -22,70 +20,102 @@ public class AutoRename extends JFrame {
 
         JPanel p1 = new JPanel();
         JPanel p2 = new JPanel();
-        
+        JPanel p3 = new JPanel();
+
         p1.setLayout(new BorderLayout());
         p2.setLayout(new BorderLayout());
-        
+        p3.setLayout(new GridLayout(1, 2));
+
         setupFileChooser();
 
         log.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(log);
 
-        JButton renomear = new JButton("Renomear");
+        JButton adicionar = new JButton("Adicionar Enumeração");
+        JButton remover = new JButton("Remover Enumeração");
 
-        renomear.addActionListener(new ActionListener() {
+        adicionar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                filaDeAlteracao(getPath());
-                
+
+                filaDeAlteracao(getPath(), true);
+
             }
 
         });
 
-        p1.add(new JLabel("Insira diretótio (double backslash)"), BorderLayout.NORTH);
+        remover.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                filaDeAlteracao(getPath(), false);
+
+            }
+
+        });
+
         p1.add(chooseDirectory, BorderLayout.CENTER);
         p2.add(scrollPane, BorderLayout.NORTH);
-        p2.add(renomear, BorderLayout.SOUTH);
+        p3.add(adicionar);
+        p3.add(remover);
+        p2.add(p3, BorderLayout.SOUTH);
 
         getContentPane().add(p1);
         getContentPane().add(p2);
+        getContentPane().add(p3);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
-    public static void setupFileChooser(){
+    private static void setupFileChooser() {
         chooseDirectory.setControlButtonsAreShown(false);
         chooseDirectory.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter audio = new FileNameExtensionFilter("Faixas de áudio", "mp3", "flac", "wma","wav", "aac" ); 
+        FileNameExtensionFilter audio = new FileNameExtensionFilter("Faixas de áudio", "mp3", "flac", "wma", "wav",
+                "aac");
         chooseDirectory.addChoosableFileFilter(audio);
     }
 
-    public String getPath(){
+    private String getPath() {
         return chooseDirectory.getCurrentDirectory().getAbsolutePath();
     }
 
-    public void filaDeAlteracao(String path) {
+    private void filaDeAlteracao(String path, boolean adicionar) {
         File folder = new File(path);
-        File[] listOfFiles  = folder.listFiles();
+        File[] listOfFiles = folder.listFiles();
+        int iterator = 1;
 
-        
         for (File file : listOfFiles) {
-            if ((file.isFile() && file.getName().contains("mp3")) && (file.getName().contains("-") || file.getName().contains("."))) {
-                renomeador(file);
+            if (!adicionar) {
+                if ((file.isFile() && file.getName().contains("mp3"))
+                        && (file.getName().contains("-") || file.getName().contains("."))) {
+                    remover(file);
+                }
+            } else {
+                if ((file.isFile() && file.getName().contains("mp3"))) {
+                    adicionar(file, iterator);
+                    iterator++;
+                }
             }
         }
     }
 
-    public static void logUpdate(String update){
+    private static void logUpdate(String update) {
         log.setText(log.getText() + "\n" + update);
     }
 
-    public void renomeador(File file) {
+    private void remover(File file) {
         logUpdate(file.getName());
         String nome = "" + file.getName().substring(4);
+        File file2 = new File(getPath() + "\\" + nome);
+        file.renameTo(file2);
+    }
+
+    private void adicionar(File file, int iterator) {
+        logUpdate(file.getName());
+        String nome = iterator + " - " + file.getName();
         File file2 = new File(getPath() + "\\" + nome);
         file.renameTo(file2);
     }
