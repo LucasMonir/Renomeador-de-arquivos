@@ -4,7 +4,7 @@ Ideia simples para remover a enumeração de múltiplas faixas de musica de uma 
 <h3> Programa renomeia arquivos como por exemplo "001 - space odditie", removendo o número do início do nome.</h3>
 
 <p> Tela do programa: </p>
-<img src="https://github.com/LucasMonir/Renomeador-de-musicas/blob/main/AutoRename.PNG?raw=true">
+<img src="https://github.com/LucasMonir/Renomeador-de-musicas/blob/main/AutoRename.png">
 
 <h3> Exemplo do funcionamento: </h3>
 <p> Com a pasta selecionada, ao clicar em renomear as músicas alteradas serão exibidas no console do programa. </p>
