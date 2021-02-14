@@ -12,5 +12,5 @@ Ideia simples para remover ou adicionar enumeração de múltiplos arquivos de u
 <img src="https://github.com/LucasMonir/Renomeador-de-musicas/blob/main/Execu%C3%A7%C3%A3o.PNG?raw=true">
 
 <h3> Em desenvolvimento... </h3>
-<h3> Próximo passo: renomear qualquer tipo de arquivo (apenas músicas por enquanto), com nome de acordo com quantidade </h3>
+<h3> Próximo passo: enumerar qualquer tipo de arquivo (apenas músicas por enquanto), com nome de acordo com quantidade </h3>
 
