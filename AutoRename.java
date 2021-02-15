@@ -26,10 +26,18 @@ public class AutoRename extends JFrame {
         p2.setLayout(new BorderLayout());
         p3.setLayout(new GridLayout(1, 2));
 
+        p1.setBackground(new Color(0, 69, 123));
+        p2.setBackground(new Color(0, 69, 123));
+        p3.setBackground(new Color(0, 69, 123));
+
+        chooseDirectory.setForeground(new Color(218, 225, 233));
         setupFileChooser();
 
         log.setEditable(false);
+        log.setBackground(new Color(218, 225, 233));
+
         JScrollPane scrollPane = new JScrollPane(log);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
 
         JButton adicionar = new JButton("Adicionar Enumeração");
         JButton remover = new JButton("Remover Enumeração");
@@ -72,7 +80,6 @@ public class AutoRename extends JFrame {
 
     private static void setupFileChooser() {
         chooseDirectory.setControlButtonsAreShown(false);
-        chooseDirectory.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter audio = new FileNameExtensionFilter("Faixas de áudio", "mp3", "flac", "wma", "wav",
                 "aac");
         chooseDirectory.addChoosableFileFilter(audio);
