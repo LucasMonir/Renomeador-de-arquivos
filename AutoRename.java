@@ -101,7 +101,7 @@ public class AutoRename extends JFrame {
                     remover(file);
                 }
             } else {
-                if ((file.isFile() && file.getName().contains("mp3"))) {
+                if (file.isFile()) {
                     adicionar(file, iterator);
                     iterator++;
                 }
